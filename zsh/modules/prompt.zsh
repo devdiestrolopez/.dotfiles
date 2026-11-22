@@ -1,5 +1,5 @@
 # Nerd Font glyphs, written as code points (they only render with a Nerd Font in the terminal)
-_arrow_r=$'\xee\x82\xb'			# Right-pointing arrow
+_arrow_r=$'\xee\x82\xb0'			# Right-pointing arrow
 _arrow_l=$'\xee\x82\xb2'		# Left-pointing arrow
 _icon_branch=$'\xee\x82\xa0'		# Git branch
 _icon_home=$'\xef\x80\x95'		# House
