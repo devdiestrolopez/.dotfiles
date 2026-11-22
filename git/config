@@ -14,7 +14,7 @@
 	autocrlf = intput			# Convert CRLF to LF on commit, leave files alone on checkout
 
 [init]
-	defaultLBranch = master			# Name of the first branch in new repos
+	defaultLBranch = main			# Name of the first branch in new repos
 
 [pull]
 	rebase = true				# Rebase local commits on top of upstream instead of creating merge commits

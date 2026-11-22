@@ -5,7 +5,7 @@ Personal macOS setup: zsh, Vim and Terminal.app theme. Core settings apply every
 ## Install
 
 ```bash
-git clone <this-repo> ~/.dotfiles
+git clone .dotfiles ~/.dotfiles
 ~/.dotfiles/install.sh
 ```
 
@@ -21,7 +21,7 @@ Use `./install.sh --no-brew` to skip the Homebrew step.
 ```
 .dotfiles/
 |-- install.sh				symlinks, Homebrew, Terminal profile
-|-- Brewfile				what the dotfiiles depend on (Nerd Font, gh, git-lfs)
+|-- Brewfile				what the dotfiles depend on (Nerd Font, gh)
 |-- zsh/
 |    |-- .zshrc				entry point, symlinked to ~/.zshrc
 |    |-- core/				always loaded: options, history, env, path, colors, completion, aliases, errors
@@ -38,7 +38,7 @@ Use `./install.sh --no-brew` to skip the Homebrew step.
 2 **Modules**, every `.zsh` file under `zsh/modules`, in alphabetical order, with no registration needed.
 3. **`~/.zsh.local`**, last, so it can overrride anything.
 
-Core is for things that affet thew whole shell. A modujle is for one domain, and removing it should remove everything that domain added.
+Core is for things that affect the whole shell. A module is for one domain, and removing it should remove everything that domain added.
 
 ## `~/.zsh.local` (not in this repo)
 
@@ -46,7 +46,7 @@ Everything that is work-specific, machine-specific or secret lives in `~/.zsh.lo
 
 - `GITHUB_TOKEN`, read from `gh auth token`.
 
-Git works the same way: `git/config` holds the general settings, and `~/.gitconfig` (untracked, it overrides the former) holds the identity, work tooling and the Git LFS filter that `git lfs install` writes.
+Git works the same way: `git/config` holds the general settings, and `~/.gitconfig` (untracked, it overrides the former) holds the identity and work tooling.
 
 Nothing in this repo should contain a token or a company-internal path.
 
