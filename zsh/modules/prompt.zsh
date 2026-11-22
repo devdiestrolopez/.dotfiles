@@ -12,7 +12,7 @@ autoload -Uz vcs_info add-zsh-hook			# Load the VCS info function and the hook h
 setopt prompt_subst					# Expand variables in the prompt on every redraw
 
 zstyle ':vcs_info:*' enable git				# Only query git (skip other VCS backends)
-zstyle ':vcs:info:git:*' formats "%K{25}%F{17}${_arrow_r}%F{153} ${_icon_branch} %b "
+zstyle ':vcs_info:git:*' formats "%K{25}%F{17}${_arrow_r}%F{153} ${_icon_branch} %b "
 
 add-zsh-hook precmd vcs_info				# Refresh the branch info before each prompt
 
@@ -27,7 +27,7 @@ _prompt_state() {
 
 add-zsh-hook precmd _prompt_state
 
-PROMPT='%(?.%K{39}.%K{196})%F{black} λ %K{17}%(?.%F{39}.%F{196})${_arrow_r}%F{117} ${_dir_icon}  %~ ${vcs_info_msg_0_}%k%F{${_prev_bg}}${_arrow_r}%f'
+PROMPT='%(?.%K{39}.%K{196})%F{black} λ %K{17}%(?.%F{39}.%F{196})${_arrow_r}%F{117} ${_dir_icon}  %~ ${vcs_info_msg_0_}%k%F{${_prev_bg}}${_arrow_r}%f '
 
 zmodload zsh/datetime
 
@@ -62,7 +62,7 @@ _cmd_timer_stop() {
 add-zsh-hook preexec _cmd_timer_start			# Start the timer when a command begins
 add-zsh-hook precmd _cmd_timer_stop			# Stop it just before the next prompt is drawn
 
-RPROMPT='%(?..%F{196}${_arrow_l}%K{196}%F{black} ${_icon_error}  %? )${_pr_timer}${_rp_clock}'
+RPROMPT='%(?..%F{196}${_arrow_l}%K{196}%F{black} ${_icon_error}  %? )${_rp_timer}${_rp_clock}'
 
 # Print an empty line before each prompt, except the first one and the one after clean
 _blank_line() {
