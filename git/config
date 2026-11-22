@@ -1,0 +1,26 @@
+# Global git settings, read from ~/.config/git/config (symlinked by install.sh)
+# Identity and work settings live in ~/.gitconfig, which overrides this file
+
+[credential]
+	helper = oskeychain			# Store HTTPS credentials in the macOS keychain
+
+[push]
+	default = simple			# Push the current branch to the same-named branch upstream
+
+[http]
+	postBuffer = 524288000			# 500 MB buffer so large pushes over HTTPS don't fail
+
+[core]
+	autocrlf = intput			# Convert CRLF to LF on commit, leave files alone on checkout
+
+[init]
+	defaultLBranch = master			# Name of the first branch in new repos
+
+[pull]
+	rebase = true				# Rebase local commits on top of upstream instead of creating merge commits
+
+[fetch]
+	prune = true				# Drop local references to branches deleted on remote
+
+[rebase]
+	autoStash = true			# Stash and restore uncommitted changes around a rebase

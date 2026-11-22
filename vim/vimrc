@@ -1,0 +1,115 @@
+" Display
+set number			" Show line numbers
+set cursorline			" Highlight the current line
+set colorcolumn=120			" Draw a guide line at column 120, like Android Studio's right margin
+set scrolloff=5			" Keep 5 lines visible above and below the cursor
+set showcmd			" Show partial commands as you type them
+set laststatus=2			" Always show the status line
+syntax on			" Enable syntax highlighting
+if has('termguicolors') && $COLORTERM ==# 'truecolor'
+	set termguicolors			" Use true color, only in terminals that advertise it
+endif
+
+" Colors (Android Studio "Islands Dark"; gui* = true color, cterm* = nearest 256-color)
+set background=dark
+highlight Normal       guifg=#bcbec4 guibg=#191a1c ctermfg=250 ctermbg=234
+highlight NonText      guifg=#4b5059 guibg=#191a1c ctermfg=240 ctermbg=234
+highlight LineNr       guifg=#4b5059 guibg=#191a1c ctermfg=240 ctermbg=234
+highlight CursorLine   guibg=#1f2024 ctermbg=235 cterm=NONE
+highlight CursorLineNr guifg=#a1a3ab guibg=#1f2024 ctermfg=145 ctermbg=235 cterm=NONE
+highlight ColorColumn  guibg=#323438 ctermbg=236
+highlight Visual       guifg=NONE guibg=#214283 ctermfg=NONE ctermbg=24 gui=NONE cterm=NONE
+highlight Search       guifg=NONE guibg=#114957 ctermfg=NONE ctermbg=23
+highlight IncSearch    guifg=#bcbec4 guibg=#2d543f ctermfg=250 ctermbg=22
+highlight MatchParen   guifg=NONE guibg=#43454a ctermfg=NONE ctermbg=238 gui=bold cterm=bold
+highlight StatusLine   guifg=#bcbec4 guibg=#2b2d30 ctermfg=250 ctermbg=236 gui=NONE cterm=NONE
+highlight StatusLineNC guifg=#6f737a guibg=#2b2d30 ctermfg=243 ctermbg=236 gui=NONE cterm=NONE
+highlight VertSplit    guifg=#323438 guibg=#323438 ctermfg=236 ctermbg=236 gui=NONE cterm=NONE
+highlight Pmenu        guifg=#bcbec4 guibg=#27282b ctermfg=250 ctermbg=235
+highlight PmenuSel     guifg=#bcbec4 guibg=#214283 ctermfg=250 ctermbg=24
+highlight Folded       guifg=#7a7e85 guibg=#2b2d30 ctermfg=244 ctermbg=236
+highlight Directory    guifg=#56a8f5 ctermfg=75
+highlight Comment      guifg=#7a7e85 ctermfg=244 gui=NONE cterm=NONE
+highlight Todo         guifg=#8bb33d guibg=NONE ctermfg=106 ctermbg=NONE gui=italic cterm=NONE
+highlight String       guifg=#6aab73 ctermfg=71
+highlight Character    guifg=#6aab73 ctermfg=71
+highlight Number       guifg=#2aacb8 ctermfg=37
+highlight Float        guifg=#2aacb8 ctermfg=37
+highlight Boolean      guifg=#cf8e6d ctermfg=173
+highlight Constant     guifg=#c77dbb ctermfg=176
+highlight Identifier   guifg=#bcbec4 ctermfg=250 gui=NONE cterm=NONE
+highlight Function     guifg=#56a8f5 ctermfg=75
+highlight Statement    guifg=#cf8e6d ctermfg=173 gui=NONE cterm=NONE
+highlight Keyword      guifg=#cf8e6d ctermfg=173
+highlight Operator     guifg=#bcbec4 ctermfg=250
+highlight PreProc      guifg=#b3ae60 ctermfg=143
+highlight Type         guifg=#cf8e6d ctermfg=173 gui=NONE cterm=NONE
+highlight Special      guifg=#cf8e6d ctermfg=173
+highlight Delimiter    guifg=#bcbec4 ctermfg=250
+highlight Error        guifg=#f75464 guibg=NONE ctermfg=203 ctermbg=NONE
+highlight WarningMsg   guifg=#f2c55c ctermfg=221
+
+" Editing
+set expandtab			" Insert spaces when pressing Tab
+set tabstop=4			" Display a Tab as 4 columns
+set shiftwidth=4			" Indent by 4 columns
+set autoindent			" Keep the previous line's indent on new lines
+set mouse=a			" Use the mouse for selecting and scrolling
+set hidden			" Switch buffers without saving first
+
+" Files and state
+set noswapfile			" Don't create .swp files
+silent! call mkdir(expand('~/.local/state/vim'), 'p')			" Create the state directory if missing
+set viminfofile=~/.local/state/vim/viminfo			" Keep viminfo out of the home directory
+set path+=**			" Let :find search every subdirectory by file name
+set wildmenu			" Show a completion menu for : commands
+set wildmode=longest:full,full			" Complete to the longest match first, then cycle through the rest
+
+" Search
+set incsearch			" Show matches while typing a search
+set hlsearch			" Highlight all matches
+set ignorecase			" Search case-insensitively...
+set smartcase			" ...unless the search contains a capital letter
+
+" Windows
+set splitright			" Open vertical splits to the right
+set splitbelow			" Open horizontal splits below
+" Ctrl-h/j/k/l move between windows (no Ctrl-w prefix)
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" File tree (netrw)
+let g:netrw_liststyle = 3			" Show directories as an expandable tree
+let g:netrw_banner = 0			" Hide the netrw help banner
+let g:netrw_winsize = 25			" Sidebar takes 25% of the window width
+let g:netrw_browse_split = 4			" Open files in the previous window, keeping the tree open
+let g:netrw_altv = 1			" Open the sidebar on the left
+" Ctrl-n toggles the tree sidebar
+nnoremap <C-n> :Lexplore<CR>
+
+" :find from inside the tree opens the file in the editor window, not in the tree
+cnoreabbrev <expr> find (getcmdtype() ==# ':' && getcmdline() ==# 'find' && &filetype ==# 'netrw') ? 'wincmd l \| find' : 'find'
+
+" :terminal from inside the tree opens below the editor window, not inside the tree
+cnoreabbrev <expr> terminal (getcmdtype() ==# ':' && getcmdline() ==# 'terminal' && &filetype ==# 'netrw') ? 'wincmd l \| terminal' : 'terminal'
+cnoreabbrev <expr> term (getcmdtype() ==# ':' && getcmdline() ==# 'term' && &filetype ==# 'netrw') ? 'wincmd l \| terminal' : 'term'
+
+" Closing a terminal window ends its shell instead of leaving a hidden running job
+augroup terminal
+	autocmd!
+	autocmd TerminalOpen * setlocal bufhidden=wipe
+augroup END
+cnoreabbrev <expr> q (getcmdtype() ==# ':' && getcmdline() ==# 'q' && &buftype ==# 'terminal') ? 'q!' : 'q'
+cnoreabbrev <expr> quit (getcmdtype() ==# ':' && getcmdline() ==# 'quit' && &buftype ==# 'terminal') ? 'quit!' : 'quit'
+
+augroup netrw
+	autocmd!
+	" vim <dir> opens the tree sidebar beside an empty buffer
+	autocmd VimEnter * if argc() == 1 && isdirectory(argv(0)) | let s:dirbuf = bufnr('%') | execute 'cd' fnameescape(argv(0)) | enew | execute 'bwipeout' s:dirbuf | Lexplore | endif
+	" Quit Vim when the tree sidebar is the only window left, so one :q is enough
+	autocmd WinEnter * if winnr('$') == 1 && exists('t:netrw_lexbufnr') && bufnr('%') == t:netrw_lexbufnr | quit | endif
+	" netrw maps Ctrl-l to "refresh" inside its own buffer, which would hide the window mapping above
+	autocmd FileType netrw nmap <buffer> <C-l> <C-w>l
+augroup END
