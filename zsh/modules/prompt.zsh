@@ -52,7 +52,7 @@ _cmd_timer_stop() {
 	_rp_timer=$timer
 	
 	# Clock block (blue); its arrow sits on the previous block's background
-	if [[ -n $timer ]]; then _rp_clock=%k{214}%F{17}${_arrow_l}"
+	if [[ -n $timer ]]; then _rp_clock="%K{214}%F{17}${_arrow_l}"
 	else _rp_clock="%(?.%F{17}.%K{196}%F{17})${_arrow_l}"
 	fi
 
