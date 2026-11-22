@@ -11,10 +11,10 @@
 	postBuffer = 524288000			# 500 MB buffer so large pushes over HTTPS don't fail
 
 [core]
-	autocrlf = intput			# Convert CRLF to LF on commit, leave files alone on checkout
+	autocrlf = input			# Convert CRLF to LF on commit, leave files alone on checkout
 
 [init]
-	defaultLBranch = main			# Name of the first branch in new repos
+	defaultBranch = master			# Name of the first branch in new repos
 
 [pull]
 	rebase = true				# Rebase local commits on top of upstream instead of creating merge commits
