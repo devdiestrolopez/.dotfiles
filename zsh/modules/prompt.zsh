@@ -12,7 +12,7 @@ autoload -Uz vcs_info add-zsh-hook			# Load the VCS info function and the hook h
 setopt prompt_subst					# Expand variables in the prompt on every redraw
 
 zstyle ':vcs_info:*' enable git				# Only query git (skip other VCS backends)
-zstyle ':vcs:info:git:*' formats "%K{25}%F{17}${_arrow_r}%F{153} ${:icon_branch} %b "
+zstyle ':vcs:info:git:*' formats "%K{25}%F{17}${_arrow_r}%F{153} ${_icon_branch} %b "
 
 add-zsh-hook precmd vcs_info				# Refresh the branch info before each prompt
 
